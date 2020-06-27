@@ -1,5 +1,8 @@
 from tkinter import *
+from PIL import Image,ImageTk
+from io import BytesIO
 import requests
+
 class News:
 
     def __init__(self):
@@ -49,6 +52,14 @@ class News:
         self.display(news, index=index)
 
     def display(self, news, index):
+        canvas = Canvas(self.root, width=400, height=250)
+        canvas.pack()
+        img_response = requests.get(news[3])
+        img_data = img_response.content
+        img = ImageTk.PhotoImage(Image.open(BytesIO(img_data)))
+        canvas.create_image(100, 100, image=img)
+
+
         title = Text(self.root,fg="red")
         title.insert(INSERT,news[0])
         title.configure(font=("Times", 15),height=2)
