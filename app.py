@@ -47,6 +47,7 @@ class News:
         news.append(self.data[index]['title'])
         news.append(self.data[index]['source']['name'])
         news.append(self.data[index]['description'])
+        news.append(self.data[index]['urlToImage'])
 
         self.clear()
         self.display(news, index=index)
